@@ -4,12 +4,13 @@ module.exports = ({
     return new categoryModel({ 
         categoryName:req.categoryName,
         categoryDescription:req.categoryDescription,
+        type:req.type,
         date:new Date(),
         }).save()
 },
 
-getAllCategory:async() => {
-  return await categoryModel.find().lean().exec()
+getAllCategory:async(condition) => {
+  return await categoryModel.find(condition).lean().exec()
 },
 getCategoryById:async(req) => {
    return await categoryModel.findOne({_id:req.id}).exec()

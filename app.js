@@ -5,6 +5,7 @@ const cors = require('cors');
 
 const userRouter = require('./router/userRouter')
 const categoryRouter = require('./router/categoryRouter')
+const rawMetrailRouter = require('./router/rawMetrialRouter')
 
 const PORT=process.env.PORT || 4000
 
@@ -15,6 +16,7 @@ app.use(cors());
 
 app.use("/api/user",userRouter);
 app.use("/api/category",categoryRouter);
+app.use("/api/raw-metrial",rawMetrailRouter);
 
 app.get('/ping',(req,res)=>{
 res.send('server is on')

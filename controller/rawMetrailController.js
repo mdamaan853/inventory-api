@@ -1,19 +1,19 @@
-const {createCategory,getAllCategory,getCategoryById,updateCategory,deleteCategory} = require('../service/categoryService')
+const {createRawMetrial,getAllRawMetrail,getRawMetrailById,updateRawMetrail,deleteRawMetrail} = require('../service/rawMaterialService')
 
 module.exports = ({
-    createCategorys:async (req, res) => {
+    createRawMetrials:async (req, res) => {
         try{
-            let data = await createCategory(req.body) 
+            let data = await createRawMetrial(req.body) 
             
             if (!data) {
                 res.json({
                     success:false, 
-                    msg:"Error in create category"
+                    msg:"Error in create Raw Metrial"
                 })
             } else {
                 res.json({
                     success:true,
-                    msg: "category added",
+                    msg: "Raw Metrial added",
                     result: data,
                 })
             }
@@ -21,26 +21,20 @@ module.exports = ({
             console.log(err)
             res.json({
                 success:false, 
-                msg:"Error in create category",
+                msg:"Error in create Raw Metrial",
                 error:err
             })
         }
     },
 
-    getAllCategorys:async(req, res) => {
+    getAllRawMetrails:async(req, res) => {
         try{
-            console.log(req.query)
-
-            let condition={}
-            if (req.query.type) {
-                condition={type:req.query.type}
-            }
-            let data=await getAllCategory(condition)
+            let data=await getAllRawMetrail()
            if(!data){
                 res.json({
                     success: false,
                     result: data,
-                    msg:"no category found"
+                    msg:"no Raw Metrail found"
                 })
             }else{
                 res.json({
@@ -55,9 +49,9 @@ module.exports = ({
             })
         }
     },  
-    getCategorysById: async (req, res) => {
+    getRawMetrailsById: async (req, res) => {
         try{
-            let data = await getCategoryById(req.params)
+            let data = await getRawMetrailById(req.params)
             
             if (!data) {
                 res.json({
@@ -78,9 +72,9 @@ module.exports = ({
         }
         
     },
-    updateCategorys: async (req, res) => {
+    updateRawMetrails: async (req, res) => {
         try{
-            let data = await updateCategory(req.body)
+            let data = await updateRawMetrail(req.body)
             
             if (!data) {
                 res.json({
@@ -101,9 +95,9 @@ module.exports = ({
         }
         
     },
-    deleteCategorys: async (req, res) => {
+    deleteRawMetrails: async (req, res) => {
         try{
-            let data = await deleteCategory(req.params)
+            let data = await deleteRawMetrail(req.params)
             
             if (!data) {
                 res.json({

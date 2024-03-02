@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const multer = require('multer')
 
-const {createCategorys,getAllCategorys,getCategorysById,updateCategorys,deleteCategorys} = require('../controller/categoryController')
+const {createRawMetrials,getAllRawMetrails,getRawMetrailsById,updateRawMetrails,deleteRawMetrails} = require('../controller/rawMetrailController')
 const auth =require('../middleware/auth')
 const {checkCategory} =require('../middleware/checkUniqueUser')
 
@@ -16,16 +16,15 @@ const upload = multer({
     storage: storage
 })
 
-router.post('/', upload.none(),auth,checkCategory,createCategorys);
+router.post('/', upload.none(),auth,createRawMetrials);
 
-router.get('/',auth,getAllCategorys);
+router.get('/',auth,getAllRawMetrails);
 
-router.get('/:id',auth,getCategorysById);
+router.get('/:id',auth,getRawMetrailsById);
 
-router.put('/',upload.none(),auth,updateCategorys);
+router.put('/',upload.none(),auth,updateRawMetrails);
 
-router.delete('/:id',upload.none(),auth,deleteCategorys);
-
+router.delete('/:id',upload.none(),auth,deleteRawMetrails);
 
 
 module.exports = router; 

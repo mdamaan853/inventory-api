@@ -7,6 +7,10 @@ const categoryschema = new mongoose.Schema({
     categoryDescription: {
         type: String
     },
+    type: {
+        type: String,
+        required:true
+    },
     date: {
         type: Date
     }
