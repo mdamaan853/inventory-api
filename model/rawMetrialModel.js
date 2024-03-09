@@ -26,7 +26,13 @@ const rawschema = new mongoose.Schema({
         required: true
     },raw_stock:{
         type:Array
-    },Date:{
+    },raw_gsm:{
+        type:String
+    },
+    quantity_alert:{
+        type:Number
+    },
+    Date:{
         type:Date,
     }
 })

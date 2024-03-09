@@ -12,7 +12,14 @@ const productchema = new mongoose.Schema({
         type: mongoose.Types.ObjectId,
         required: true,
         ref:"category"
-    },Date:{
+    },
+    product_width: {
+        type: String,
+    },
+    product_length: {
+        type: String,
+    },
+    Date:{
         type:Date,
     }
 })

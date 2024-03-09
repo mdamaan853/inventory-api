@@ -5,6 +5,8 @@ module.exports = ({
         product_name:req.product_name,
         product_sku:req.product_sku,
         product_category:req.product_category,
+        product_width:req.product_width,
+        product_length:req.product_length,
         Date:new Date(),
         }).save()
 },
