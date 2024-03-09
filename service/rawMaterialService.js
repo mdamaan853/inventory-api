@@ -9,7 +9,7 @@ module.exports = ({
         raw_weight:req.raw_weight,
         raw_length:req.raw_length,
         raw_stock:req.raw_stock,
-        date:new Date(),
+        Date:new Date(),
         }).save()
 },
 

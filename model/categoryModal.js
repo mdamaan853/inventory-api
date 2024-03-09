@@ -11,7 +11,7 @@ const categoryschema = new mongoose.Schema({
         type: String,
         required:true
     },
-    date: {
+    Date: {
         type: Date
     }
 })

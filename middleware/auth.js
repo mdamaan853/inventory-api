@@ -6,7 +6,7 @@ module.exports = (req, res, next) => {
     console.log(token)
     try {
         var decode = jwt.verify(token,process.env.JWT_SECRET_KEY)
-        console.log(decode)
+        // console.log(decode)
         console.log('you are logged in'),
             next();
     } catch {

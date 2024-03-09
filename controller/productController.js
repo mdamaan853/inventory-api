@@ -1,20 +1,20 @@
-const {createRawMetrial,getAllRawMetrail,getRawMetrailById,updateRawMetrail,deleteRawMetrail} = require('../service/rawMaterialService')
+const {createProduct,getAllProduct,getProductById,updateProduct,deleteProduct} = require('../service/productService')
 const {getRandomNumber} =require('../utils/generatorRandom')
 module.exports = ({
-    createRawMetrials:async (req, res) => {
+    createProducts:async (req, res) => {
         try{
-            req.body.raw_sku="SKU"+getRandomNumber(5)
-            let data = await createRawMetrial(req.body) 
+            req.body.product_sku="SKU"+getRandomNumber(5)
+            let data = await createProduct(req.body) 
             
             if (!data) {
                 res.json({
                     success:false, 
-                    msg:"Error in create Raw Metrial"
+                    msg:"Error in create product"
                 })
             } else {
                 res.json({
                     success:true,
-                    msg: "Raw Metrial added",
+                    msg: "product added",
                     result: data,
                 })
             }
@@ -22,20 +22,19 @@ module.exports = ({
             console.log(err)
             res.json({
                 success:false, 
-                msg:"Error in create Raw Metrial",
+                msg:"Error in create product",
                 error:err
             })
         }
     },
-
-    getAllRawMetrails:async(req, res) => {
+    getAllProducts:async(req, res) => {
         try{
-            let data=await getAllRawMetrail()
+            let data=await getAllProduct()
            if(!data){
                 res.json({
                     success: false,
                     result: data,
-                    msg:"no Raw Metrail found"
+                    msg:"no product found"
                 })
             }else{
                 res.json({
@@ -50,9 +49,9 @@ module.exports = ({
             })
         }
     },  
-    getRawMetrailsById: async (req, res) => {
+    getProductsById: async (req, res) => {
         try{
-            let data = await getRawMetrailById(req.params)
+            let data = await getProductById(req.params)
             
             if (!data) {
                 res.json({
@@ -73,9 +72,9 @@ module.exports = ({
         }
         
     },
-    updateRawMetrails: async (req, res) => {
+    updateProducts: async (req, res) => {
         try{
-            let data = await updateRawMetrail(req.body)
+            let data = await updateProduct(req.body)
             
             if (!data) {
                 res.json({
@@ -96,9 +95,9 @@ module.exports = ({
         }
         
     },
-    deleteRawMetrails: async (req, res) => {
+    deleteProducts: async (req, res) => {
         try{
-            let data = await deleteRawMetrail(req.params)
+            let data = await deleteProduct(req.params)
             
             if (!data) {
                 res.json({

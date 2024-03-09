@@ -6,10 +6,10 @@ const rawschema = new mongoose.Schema({
     },
     raw_sku: {
         type: String,
-        required: true
+        required:true
     },
     raw_category: {
-        type: String,
+        type: mongoose.Types.ObjectId,
         required: true,
         ref:"category"
     },
@@ -30,5 +30,5 @@ const rawschema = new mongoose.Schema({
         type:Date,
     }
 })
-const categorymodel = mongoose.model('rawMetrial', rawschema);
-module.exports = categorymodel;
+const productmodel = mongoose.model('rawMetrial', rawschema);
+module.exports = productmodel;

@@ -5,7 +5,7 @@ module.exports = ({
         categoryName:req.categoryName,
         categoryDescription:req.categoryDescription,
         type:req.type,
-        date:new Date(),
+        Date:new Date(),
         }).save()
 },
 
