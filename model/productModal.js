@@ -19,6 +19,14 @@ const productchema = new mongoose.Schema({
     product_length: {
         type: String,
     },
+    raw_required: [
+        {
+            raw_metrail_id:mongoose.Types.ObjectId,
+            Substrate:String,
+            flat_size:String,
+            perunit_weight:String
+        }
+    ],
     Date:{
         type:Date,
     }
