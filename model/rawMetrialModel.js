@@ -17,10 +17,6 @@ const rawschema = new mongoose.Schema({
         type: String,
         required: true
     },
-    raw_weight: {
-        type: String,
-        required: true
-    },
     raw_length: {
         type: String,
         required: true
