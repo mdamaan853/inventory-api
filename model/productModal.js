@@ -21,8 +21,8 @@ const productchema = new mongoose.Schema({
     },
     raw_required: [
         {
-            raw_metrail_id:mongoose.Types.ObjectId,
-            Substrate:String,
+            raw_id:mongoose.Types.ObjectId,
+            substrate:String,
             flat_size:String,
             perunit_weight:String
         }
