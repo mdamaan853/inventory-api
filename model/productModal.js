@@ -19,14 +19,9 @@ const productchema = new mongoose.Schema({
     product_length: {
         type: String,
     },
-    raw_required: [
-        {
-            raw_id:mongoose.Types.ObjectId,
-            substrate:String,
-            flat_size:String,
-            perunit_weight:String
-        }
-    ],
+    raw_required:{
+        type:Array
+    },
     Date:{
         type:Date,
     }
