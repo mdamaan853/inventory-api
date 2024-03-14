@@ -1,30 +1,23 @@
 const mongoose = require('../db.config')
-const productchema = new mongoose.Schema({
+const orderschema = new mongoose.Schema({
     product_name: {
         type: String,
         required: true
     },
-    product_sku: {
+    order_id : {
         type: String,
         required:true
     },
-    product_category: {
-        type: mongoose.Types.ObjectId,
+    product_weight: {
+        type: String,
         required: true,
-        ref:"category"
     },
-    product_width: {
-        type: String,
-    },
-    product_length: {
-        type: String,
-    },
-    raw_required:{
-        type:Array
+    raw_required: {
+        type: Array,
     },
     Date:{
         type:Date,
     }
 })
-const productmodel = mongoose.model('product', productchema);
-module.exports = productmodel;
+const ordermodel = mongoose.model('order', orderschema);
+module.exports = ordermodel;
