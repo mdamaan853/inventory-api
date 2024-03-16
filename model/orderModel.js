@@ -16,6 +16,9 @@ const orderschema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    status:{
+        type:String,
+    },
     raw_required: {
         type: Array,
     },

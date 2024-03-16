@@ -1,4 +1,4 @@
-const {createOrder,getAllOrder,getOrderById,updateOrder,deleteOrder} = require('../service/orderService')
+const {createOrder,getAllOrder,getOrderById,updateOrder,updateOrderStatus,deleteOrder} = require('../service/orderService')
 const orderid = require('order-id')('hdhdj');
 module.exports = ({
     createOrders:async (req, res) => {
@@ -80,8 +80,9 @@ module.exports = ({
     },
     updateOrders: async (req, res) => {
         try{
+            console.log(req.body)
             let data = await updateOrder(req.body)
-            
+            console.log(data)
             if (!data) {
                 res.json({
                     success: false,
