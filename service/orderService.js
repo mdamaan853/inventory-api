@@ -7,7 +7,7 @@ module.exports = ({
         order_id:req.order_id,
         product_weight:req.product_weight,
         raw_required:req.raw_required,
-        status:"Pending",
+        status:"Not Started",
         Date:new Date(),
         }).save()
 },
