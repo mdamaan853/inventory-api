@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken')
 const { hashSync, compareSync } = require('bcrypt')
-const { createUser, getAllUser, getUserById, loginUser } = require('../service/userService')
+const { createUser, getAllUser, getUserById, loginUser,getUserDashboard } = require('../service/userService')
 const dotenv =require('dotenv')
 dotenv.config()
 
@@ -73,6 +73,29 @@ module.exports = ({
                 })
             }
         })
+    },  
+    getUserDashboards:async (req, res) => {
+        try{
+
+            let result =await getUserDashboard()
+           if(result){
+                res.json({
+                    success: true,
+                    result: result
+                })
+            }else{
+                res.json({
+                    success: false,
+                    result: result
+                })
+            }
+        }catch(err){
+            console.log(err)
+            res.json({
+                success: false,
+                result: err
+            })
+        }
     },  
     getUsersById: async (req, res) => {
         let user = await getUserById(req.params)

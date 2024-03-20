@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const multer = require('multer')
 
-const { createUsers,getAllUsers,getUsersById,loginUsers} = require('../controller/userController')
+const { createUsers,getAllUsers,getUsersById,loginUsers,getUserDashboards} = require('../controller/userController')
 const {checkEmail} =require('../middleware/checkUniqueUser')
 
 const storage = multer.diskStorage({
@@ -18,6 +18,8 @@ const upload = multer({
 router.post('/register', upload.none(),checkEmail,createUsers);
     
 router.post('/login',upload.none(),loginUsers);
+
+router.get('/dashboard',getUserDashboards);
 
 router.get('/',getAllUsers);
 
