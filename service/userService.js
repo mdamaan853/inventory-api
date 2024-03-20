@@ -25,11 +25,8 @@ getUserDashboard:async(req, res) => {
     let orderCount = await orderModel.find().countDocuments().exec()
     let rawMetrailCount = await rawMetrailModel.find().countDocuments().exec()
     let productCount = await productModel.find().countDocuments().exec()
-    let OrderProcessing = await productModel.find({status:"Processing"}).exec()
-    let itemOutStock = await  rawMetrailModel.find({"raw_stock.stock_weight": { $gt: 0 }}).exec()
-    let itemInStock = await  rawMetrailModel.find({"raw_stock.stock_weight": { $lt: 0 }}).exec()
-    let result={orderCount,rawMetrailCount,productCount,OrderProcessing,itemOutStock,itemInStock}
-    console.log(result)
+    let OrderProcessing = await orderModel.find({status:"Processing"}).exec()
+    let result={productCount,rawMetrailCount,orderCount,OrderProcessing}
     return result
 }, 
 getUserById:async(req) => {

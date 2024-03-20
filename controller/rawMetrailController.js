@@ -1,4 +1,4 @@
-const {createRawMetrial,getAllRawMetrail,getRawMetrailById,updateRawMetrail,deleteRawMetrail} = require('../service/rawMaterialService')
+const {createRawMetrial,getAllRawMetrail,getRawMetrailById,getRawMetrailStock,updateRawMetrail,deleteRawMetrail} = require('../service/rawMaterialService')
 const {getRandomNumber} =require('../utils/generatorRandom')
 module.exports = ({
     createRawMetrials:async (req, res) => {
@@ -31,6 +31,28 @@ module.exports = ({
     getAllRawMetrails:async(req, res) => {
         try{
             let data=await getAllRawMetrail()
+           if(!data){
+                res.json({
+                    success: false,
+                    result: data,
+                    msg:"no Raw Metrail found"
+                })
+            }else{
+                res.json({
+                    success: true,
+                    result: data
+                })
+            }
+        }catch(err){
+            res.json({
+                success: false,
+                result: err
+            })
+        }
+    },  
+    getRawMetrailStocks:async(req, res) => {
+        try{
+            let data=await getRawMetrailStock()
            if(!data){
                 res.json({
                     success: false,

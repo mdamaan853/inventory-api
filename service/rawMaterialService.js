@@ -18,6 +18,12 @@ module.exports = ({
 getAllRawMetrail:async() => {
   return await rawModel.find().lean().populate("raw_category").exec()
 },
+
+getRawMetrailStock:async() => {
+   let itemOutStock = await  rawModel.find({"raw_stock.stock_weight": { $lt: 0 }}).exec()
+   let itemInStock = await  rawModel.find({"raw_stock.stock_weight": { $gt: 0 }}).exec()
+  return {itemOutStock ,itemInStock}
+},
 getRawMetrailById:async(req) => {
    return await rawModel.findOne({_id:req.id}).populate("raw_category").exec()
 },
