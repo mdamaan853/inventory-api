@@ -8,6 +8,7 @@ module.exports = ({
         product_width:req.product_width,
         product_length:req.product_length,
         raw_required:req.raw_required,
+        repeat_width:req.repeat_width,
         Date:new Date(),
         }).save()
 },

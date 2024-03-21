@@ -8,6 +8,9 @@ const productchema = new mongoose.Schema({
         type: String,
         required:true
     },
+    repeat_width: {
+        type: Number
+    },
     product_category: {
         type: mongoose.Types.ObjectId,
         required: true,
