@@ -20,7 +20,7 @@ getAllRawMetrail:async() => {
 },
 
 getRawMetrailStock:async() => {
-   let itemOutStock = await  rawModel.find({"raw_stock.stock_weight": { $lt: 0 }}).exec()
+   let itemOutStock = await  rawModel.find({"raw_stock.stock_weight": { $lte: 0 }}).exec()
    let itemInStock = await  rawModel.find({"raw_stock.stock_weight": { $gt: 0 }}).exec()
   return {itemOutStock ,itemInStock}
 },
