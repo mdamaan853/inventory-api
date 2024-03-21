@@ -8,7 +8,7 @@ module.exports = ({
         product_weight:req.product_weight,
         raw_required:req.raw_required,
         status:"Not Started",
-        customername:req.raw_required,
+        customername:req.customername,
         Date:new Date(),
         }).save()
 },
