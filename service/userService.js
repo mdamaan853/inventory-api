@@ -32,5 +32,11 @@ getUserDashboard:async(req, res) => {
 getUserById:async(req) => {
    return await userModel.findOne({_id:req.id}).exec()
 },
+updateUser:async(req) => {
+    return await userModel.updateOne({_id:req._id},{$set:req}).exec()
+ },
+ deleteUser:async(req) => {
+    return await userModel.deleteOne({_id:req.id}).exec()
+ }
 
 })

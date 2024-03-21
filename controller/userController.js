@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken')
 const { hashSync, compareSync } = require('bcrypt')
-const { createUser, getAllUser, getUserById, loginUser,getUserDashboard } = require('../service/userService')
+const { createUser, getAllUser, getUserById, loginUser,getUserDashboard, updateUser, deleteUser } = require('../service/userService')
 const dotenv =require('dotenv')
 dotenv.config()
 
@@ -113,5 +113,54 @@ module.exports = ({
                     result: user
                 })
             }
+    },
+    updateUsers: async (req, res) => {
+        try{
+            if(req.body.password){
+                req.body.password = hashSync(req.body.password, 10)
+            }
+            let data = await updateUser(req.body)     
+            if (!data) {
+                res.json({
+                    success: false,
+                    msg: "failed to update"
+                })
+            } else {
+                res.json({
+                    success: true,
+                    result: data
+                })
+            }
+        }catch(err){
+            res.json({
+                success: false,
+                err: err
+            })
+        }
+        
+    },
+    deleteUsers: async (req, res) => {
+        try{
+            let data = await deleteUser(req.params)
+            
+            if (!data) {
+                res.json({
+                    success: false,
+                    msg: "failed to delete"
+                })
+            } else {
+                res.json({
+                    success: true,
+                    result: data,
+                    msg:"deleted"
+                })
+            }
+        }catch(err){
+            res.json({
+                success: false,
+                err: err
+            })
+        }
+        
     }
 })
