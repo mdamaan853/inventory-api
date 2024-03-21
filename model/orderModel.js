@@ -4,6 +4,9 @@ const orderschema = new mongoose.Schema({
         type: String,
         required: true
     },
+    customername: {
+        type: String,
+    },
     product_id: {
         type: String,
         required: true
