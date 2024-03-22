@@ -59,20 +59,20 @@ module.exports = ({
                 }
             }
     },
-    getAllUsers: (req, res) => {
-        getAllUser(req, (err, data) => {
-            if (err) {
-                res.json({
-                    success: 0,
-                    msg: err
-                })
-            } else {
-                res.json({
-                    success: 1,
-                    result: data
-                })
-            }
+    getAllUsers: async (req, res) => {
+        try{
+        let data= await getAllUser()
+        res.json({
+            success: true,
+            result: data
         })
+        }catch(err){
+            res.json({
+                success: false,
+                result: err
+            })
+        }    
+                
     },  
     getUserDashboards:async (req, res) => {
         try{
