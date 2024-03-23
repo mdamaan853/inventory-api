@@ -15,7 +15,7 @@ loginUser: async (req) => {
   return await userModel.findOne({email:req.email}).exec()
 },
 getAllUser: (req, res) => {
-    return userModel.find({}).exec()
+    return userModel.find({}).select({password:0}).exec()
 },
 getUserDashboard:async(req, res) => {
     let orderCount = await orderModel.find().countDocuments().exec()
@@ -26,9 +26,10 @@ getUserDashboard:async(req, res) => {
     return result
 }, 
 getUserById:async(req) => {
-   return await userModel.findOne({_id:req.id}).exec()
+   return await userModel.findOne({_id:req.id}).select({password:0}).exec();
 },
 updateUser:async(req) => {
+    console.log(req)
     return await userModel.updateOne({_id:req._id},{$set:req}).exec()
  },
  deleteUser:async(req) => {

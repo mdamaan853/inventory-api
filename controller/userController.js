@@ -116,6 +116,7 @@ module.exports = ({
     },
     updateUsers: async (req, res) => {
         try{
+            
             if(req.body.password){
                 req.body.password = hashSync(req.body.password, 10)
             }
