@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const multer = require('multer')
 
-const {createOrders,getAllOrders,getOrdersById,updateOrders,deleteOrders} = require('../controller/orderController')
+const {createOrders,getAllOrders,getOrdersById,updateOrders,OrderStockDeductions,deleteOrders} = require('../controller/orderController')
 const auth =require('../middleware/auth')
 
 const storage = multer.diskStorage({
@@ -18,6 +18,8 @@ const upload = multer({
 router.post('/', upload.none(),auth,createOrders);
 
 router.get('/',auth,getAllOrders);
+
+router.put('/stockdeduction',auth,OrderStockDeductions);
 
 router.get('/:id',auth,getOrdersById);
 

@@ -1,4 +1,5 @@
 const orderModel = require('../model/orderModel')
+const rawModel = require('../model/rawMetrialModel')
 module.exports = ({
     createOrder: (req) => {
     return new orderModel({ 
@@ -21,6 +22,9 @@ getOrderById:async(req) => {
 },
 updateOrder:async(req) => {
    return await orderModel.updateOne({_id:req._id},{$set:req}).exec()
+},
+OrderStockDeduction:async(req) => {
+   return await rawModel.updateOne({_id:req._id},{$set:req}).exec()
 },
 deleteOrder:async(req) => {
    return await orderModel.deleteOne({_id:req.id}).exec()
