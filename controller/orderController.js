@@ -109,8 +109,8 @@ module.exports = ({
             for(let raw in stkData) {
                 console.log(stkData[raw])
                 console.log(raw)
-                let data={_id:raw,raw_stock:stkData[raw]}
-                data = await updateRawMetrail(data)
+                let reqdata={_id:raw,raw_stock:stkData[raw]}
+                data = await updateRawMetrail(reqdata)
             }
             if (!data) {
                 res.json({

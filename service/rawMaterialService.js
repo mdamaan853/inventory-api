@@ -20,9 +20,9 @@ getAllRawMetrail:async() => {
 },
 
 getRawMetrailStock:async() => {
-   let itemOutStock = await  rawModel.find({$or:[{"raw_stock.stock_weight": { $lte: 0 }},{"raw_stock.stock_weight":{$exists:true}}]}).countDocuments().exec()
+   let itemOutStock = await  rawModel.find({$or:[{"raw_stock.stock_weight": { $lte: 0 }},{"raw_stock.stock_weight":{$exists:true}}]}).exec()
    // let itemOutStock = await  rawModel.find({"raw_stock.stock_weight": { $lte: 0 }}).countDocuments().exec()
-   let itemInStock = await  rawModel.find({"raw_stock.stock_weight": { $gt: 0 }}).countDocuments().exec()
+   let itemInStock = await  rawModel.find({"raw_stock.stock_weight": { $gt: 0 }}).exec()
   return {itemOutStock ,itemInStock}
 },
 getRawMetrailById:async(req,select={}) => {

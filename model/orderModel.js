@@ -22,6 +22,9 @@ const orderschema = new mongoose.Schema({
     status:{
         type:String,
     },
+    order_type:{
+        type:String,
+    },
     raw_required: {
         type: Array,
     },
