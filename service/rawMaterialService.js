@@ -32,15 +32,43 @@ updateRawMetrail:async(req) => {
    return await rawModel.updateOne({_id:req._id},{$set:req}).exec()
 },
 revertRawMetrail:async(req) => {
-   let rawMetrail=await rawModel.find({_id: { $in: req.rawid }})
-   rawMetrail.map(async(rawdata)=>{
-      rawdata.raw_stock.map((stock)=>{
-         stock.stock_weight=stock.previous_stock_weight
-         return  stock;
-      })
-      await rawModel.updateOne({_id:rawdata._id},{$set:rawdata}).exec()
-   })
-   return rawMetrail
+   // let rawMetrail=await rawModel.find({_id: { $in: req.rawid }})
+   //  rawMetrail.map(async(rawdata)=>{
+   //    rawdata.raw_stock.map((stock)=>{
+   //       stock.stock_weight=stock.previous_stock_weight
+   //       return  stock;
+   //    })
+   // })
+   
+   // return rawMetrail
+   try {
+      // Fetch raw materials
+      let rawMaterials = await rawModel.find({ _id: { $in: req.rawid } });
+      // Update stock_weight for each raw material
+      rawMaterials.forEach(raw => {
+          raw.raw_stock.forEach(stock => {
+              stock.stock_weight = stock.previous_stock_weight;
+          });
+      });
+
+      // Create bulk update operations
+      const bulkOps = rawMaterials.map(raw => {
+          return {
+              updateOne: {
+                  filter: { _id: raw._id },
+                  update: raw
+              }
+          };
+      });
+
+      // Execute bulk update operations
+      await rawModel.bulkWrite(bulkOps);
+
+      return rawMaterials;
+  } catch (error) {
+      console.error("Error reverting raw material:", error);
+      return error;
+  }
 },
 deleteRawMetrail:async(req) => {
    return await rawModel.deleteOne({_id:req.id}).exec()
