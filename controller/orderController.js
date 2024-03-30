@@ -1,5 +1,5 @@
 const {createOrder,getAllOrder,getOrderById,updateOrder,OrderStockDeduction,deleteOrder} = require('../service/orderService')
-const {updateRawMetrail} = require('../service/rawMaterialService')
+const {updateRawMetrail,revertRawMetrail} = require('../service/rawMaterialService')
 const orderid = require('order-id')('hdhdj');
 module.exports = ({
     createOrders:async (req, res) => {
@@ -83,6 +83,29 @@ module.exports = ({
         try{
             console.log(req.body)
             let data = await updateOrder(req.body)
+            console.log(data)
+            if (!data) {
+                res.json({
+                    success: false,
+                    msg: "failed to update"
+                })
+            } else {
+                res.json({
+                    success: true,
+                    result: data
+                })
+            }
+        }catch(err){
+            res.json({
+                success: false,
+                err: err
+            })
+        }
+    },
+    revertOrdersRawStock: async (req, res) => {
+        try{
+            console.log(req.body)
+            let data = await revertRawMetrail(req.body)
             console.log(data)
             if (!data) {
                 res.json({
