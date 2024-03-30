@@ -33,12 +33,12 @@ updateRawMetrail:async(req) => {
 },
 revertRawMetrail:async(req) => {
    let rawMetrail=await rawModel.find({_id: { $in: req.rawid }})
-   rawMetrail.map((rawdata)=>{
+   rawMetrail.map(async(rawdata)=>{
       rawdata.raw_stock.map((stock)=>{
          stock.stock_weight=stock.previous_stock_weight
          return  stock;
       })
-       updateRawMetrail(rawdata)
+      await rawModel.updateOne({_id:rawdata._id},{$set:rawdata}).exec()
    })
    return rawMetrail
 },
