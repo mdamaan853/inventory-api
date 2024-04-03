@@ -10,6 +10,7 @@ module.exports = ({
         raw_length:req.raw_length,
         raw_stock:req.raw_stock,
         raw_gsm:req.raw_gsm,
+        gsm_product:req.gsm_product,
         quantity_alert:req.quantity_alert,
         Date:new Date(),
         }).save()

@@ -17,6 +17,9 @@ const rawschema = new mongoose.Schema({
         type: String,
         required: true
     },
+    gsm_product: {
+        type: Number
+    },
     raw_length: {
         type: String,
         required: true
