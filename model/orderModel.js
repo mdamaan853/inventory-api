@@ -19,6 +19,9 @@ const orderschema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    actual_field_weight: {
+        type: String,
+    },
     status:{
         type:String,
     },

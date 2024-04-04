@@ -10,6 +10,7 @@ module.exports = ({
         raw_required:req.raw_required,
         status:"Not Started",
         order_type:req.order_type,
+        actual_field_weight:req.actual_field_weight,
         customername:req.customername,
         Date:new Date(),
         }).save()
