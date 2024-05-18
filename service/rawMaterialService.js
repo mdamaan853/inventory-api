@@ -49,6 +49,7 @@ revertRawMetrail:async(req) => {
       rawMaterials.forEach(raw => {
           raw.raw_stock.forEach(stock => {
               stock.stock_weight = stock.previous_stock_weight;
+              stock.status=true
           });
       });
 
