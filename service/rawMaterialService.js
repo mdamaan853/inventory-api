@@ -16,6 +16,15 @@ module.exports = ({
         }).save()
 },
 
+createMultipleRawMetrial: (req) => {
+    try{
+        return new rawModel.insertMany(req.rawMaterials).save()
+    }catch(err){
+        console.log(err)
+    }
+},
+
+
 getAllRawMetrail:async() => {
   return await rawModel.find().lean().populate("raw_category").exec()
 },

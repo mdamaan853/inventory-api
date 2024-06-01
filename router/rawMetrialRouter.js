@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const multer = require('multer')
 
-const {createRawMetrials,getAllRawMetrails,getRawMetrailsById,updateRawMetrails,getRawMetrailStocks,deleteRawMetrails} = require('../controller/rawMetrailController')
+const {createRawMetrials,createMultipleRawMetrials,getAllRawMetrails,getRawMetrailsById,updateRawMetrails,getRawMetrailStocks,deleteRawMetrails} = require('../controller/rawMetrailController')
 const auth =require('../middleware/auth')
 const {checkCategory} =require('../middleware/checkUniqueUser')
 
@@ -17,6 +17,8 @@ const upload = multer({
 })
 
 router.post('/', upload.none(),auth,createRawMetrials);
+
+router.post('/multiple', upload.none(),auth,createMultipleRawMetrials);
 
 router.get('/',auth,getAllRawMetrails);
 

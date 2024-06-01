@@ -1,7 +1,36 @@
-const {createRawMetrial,getAllRawMetrail,getRawMetrailById,getRawMetrailStock,updateRawMetrail,deleteRawMetrail} = require('../service/rawMaterialService')
+const {createRawMetrial,getAllRawMetrail,getRawMetrailById,getRawMetrailStock,updateRawMetrail,deleteRawMetrail,createMultipleRawMetrial} = require('../service/rawMaterialService')
 const {getRandomNumber} =require('../utils/generatorRandom')
 module.exports = ({
-    createRawMetrials:async (req, res) => {
+    createMultipleRawMetrials:async (req, res) => {
+        try{
+            req.body.rawMaterials.forEach(doc => {
+                doc.raw_sku = "SKU"+getRandomNumber(5);
+                doc.Date = new Date();  // Adding current date
+              });
+            let data = await createMultipleRawMetrial(req.body) 
+            
+            if (!data) {
+                res.json({
+                    success:false, 
+                    msg:"Error in create Raw Metrial"
+                })
+            } else {
+                res.json({
+                    success:true,
+                    msg: "Raw Metrial added",
+                    result: data,
+                })
+            }
+        }catch(err){
+            console.log(err)
+            res.json({
+                success:false, 
+                msg:"Error in create Raw Metrial",
+                error:err
+            })
+        }
+    },
+    createRawMetrials:async(req,res)=>{
         try{
             req.body.raw_sku="SKU"+getRandomNumber(5)
             let data = await createRawMetrial(req.body) 
@@ -27,7 +56,6 @@ module.exports = ({
             })
         }
     },
-
     getAllRawMetrails:async(req, res) => {
         try{
             let data=await getAllRawMetrail()
