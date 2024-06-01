@@ -5,6 +5,7 @@ module.exports = ({
         try{
             console.log(req.body,req.file)
             if(req.file){
+                req.file.path=req.file.path.replaceAll("\\","/")
                 req.body.product_image=req.file.path
             }if(req.body?.raw_required){
                 req.body.raw_required=JSON.parse(req.body?.raw_required)
@@ -81,6 +82,7 @@ module.exports = ({
     updateProducts: async (req, res) => {
         try{
             if(req.file){
+                req.file.path=req.file.path.replaceAll("\\","/")
                 req.body.product_image=req.file.path
             }if(req.body?.raw_required){
                 req.body.raw_required=JSON.parse(req.body?.raw_required)
