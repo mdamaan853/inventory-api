@@ -4,6 +4,9 @@ const productchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    product_image: {
+        type: String 
+       },
     product_sku: {
         type: String,
         required:true

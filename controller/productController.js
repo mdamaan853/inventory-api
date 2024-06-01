@@ -3,6 +3,12 @@ const {getRandomNumber} =require('../utils/generatorRandom')
 module.exports = ({
     createProducts:async (req, res) => {
         try{
+            console.log(req.body,req.file)
+            if(req.file){
+                req.body.product_image=req.file.path
+            }if(req.body?.raw_required){
+                req.body.raw_required=JSON.parse(req.body?.raw_required)
+            }
             req.body.product_sku="SKU"+getRandomNumber(5)
             let data = await createProduct(req.body) 
             
@@ -74,8 +80,12 @@ module.exports = ({
     },
     updateProducts: async (req, res) => {
         try{
+            if(req.file){
+                req.body.product_image=req.file.path
+            }if(req.body?.raw_required){
+                req.body.raw_required=JSON.parse(req.body?.raw_required)
+            }
             let data = await updateProduct(req.body)
-            
             if (!data) {
                 res.json({
                     success: false,

@@ -3,6 +3,7 @@ module.exports = ({
     createProduct: (req) => {
     return new productModel({ 
         product_name:req.product_name,
+        product_image:req.product_image,
         product_sku:req.product_sku,
         product_category:req.product_category,
         product_width:req.product_width,

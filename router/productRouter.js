@@ -6,7 +6,7 @@ const {createProducts,getAllProducts,getProductsById,updateProducts,deleteProduc
 const auth =require('../middleware/auth')
 
 const storage = multer.diskStorage({
-    destination: './upload/user',
+    destination: './upload/product',
     filename: (req, file, cb) => {
         return cb(null, file.fieldname + Date.now() + file.originalname)
     }
@@ -15,13 +15,13 @@ const upload = multer({
     storage: storage
 })
 
-router.post('/', upload.none(),auth,createProducts);
+router.post('/',upload.single('product_image'),auth,createProducts);
 
 router.get('/',auth,getAllProducts);
 
 router.get('/:id',auth,getProductsById);
 
-router.put('/',upload.none(),auth,updateProducts);
+router.put('/',upload.single('product_image'),auth,updateProducts);
 
 router.delete('/:id',upload.none(),auth,deleteProducts);
 

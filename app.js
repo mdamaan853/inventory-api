@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser=require('body-parser')
+const path = require('path');
 const app = express()
 const cors = require('cors');
 
@@ -13,6 +14,8 @@ const PORT=process.env.PORT || 4000
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(cors());
+
+app.use('/upload', express.static(path.join(__dirname, 'upload')));
 
 app.use(function(req, res, next){
   console.log('%s %s', req.method, req.url);
