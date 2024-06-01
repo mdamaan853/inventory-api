@@ -81,12 +81,15 @@ module.exports = ({
     },
     updateProducts: async (req, res) => {
         try{
+            console.log(req.file,req.body)
             if(req.file){
                 req.file.path=req.file.path.replaceAll("\\","/")
                 req.body.product_image=req.file.path
-            }if(req.body?.raw_required){
+            }
+            if(req.body?.raw_required){
                 req.body.raw_required=JSON.parse(req.body?.raw_required)
             }
+            console.log(req.body)
             let data = await updateProduct(req.body)
             if (!data) {
                 res.json({

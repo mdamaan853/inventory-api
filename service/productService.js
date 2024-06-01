@@ -21,6 +21,7 @@ getProductById:async(req) => {
    return await productModel.findOne({_id:req.id}).populate("product_category").exec()
 },
 updateProduct:async(req) => {
+   console.log(req,"serviceeeee")
    return await productModel.updateOne({_id:req._id},{$set:req}).exec()
 },
 deleteProduct:async(req) => {
